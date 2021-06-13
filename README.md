@@ -10,10 +10,15 @@ create an config.json file in the whole project (not in any folder or other file
 {   
     "token": "bot token from the dev portal",
     "prefix": "!",
+    
     "cocToken": "", // get it from here: https://developer.clashofclans.com/#/
+    
     "clashroyaletoken": "", // get it from here: https://royaleapi.com/
-	"brawlstarstoken": "", // get it from here: https://developer.brawlstars.com/#/
+    
+    "brawlstarstoken": "", // get it from here: https://developer.brawlstars.com/#/
+    
     "database": "", // your mongodb cluster key, get it from here: mongodb.com
+    
     "randomorg": "" // get it from here: https://api.random.org/dashboard
 }
 
