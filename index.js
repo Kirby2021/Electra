@@ -5,13 +5,13 @@ const Discord = require('discord.js');
 (() => {
 	process.on('uncaughtException', err => {
 		console.error(err);
-		process.exit(1); // I dont have any better idea to simulate default behaveour
+		process.exit(1); 
 	});
 	function intercept(stream, color) {
 		const write = stream.write;
-		// eslint-disable-next-line func-names
+		
 		stream.write = function() {
-			// eslint-disable-next-line prefer-rest-params
+			
 			const args = [...arguments];
 			if (typeof args[0] == 'string') {
 				args[0] = `${color(`[${new Date().toUTCString()}]`)} ${args[0]}`;
@@ -23,7 +23,7 @@ const Discord = require('discord.js');
 	intercept(process.stderr, chalk.red);
 })();
 
-// Requiring modules
+// modules
 global.Discord = Discord;
 global.mongoose = require('mongoose');
 const Ajv = require('ajv');
@@ -62,7 +62,7 @@ const config = Object.assign({}, {
 global.config = config;
 
 
-// Validating config
+
 const validateConfig = ajv.compile({
 	token: { type: String, default: 'test' },
 	collections: { type: Array, items: String },
@@ -77,10 +77,10 @@ const configValid = validateConfig(config);
 
 if (!configValid) return console.error('Config invalid:', ajv.errorsText(validateConfig.errors));
 
-// Constants
+
 global.color = config.color;
 
-// Creating client
+
 const client = new Discord.Client({
 	messageCacheMaxSize: 100,
 	messageCacheLifetime: 300,
@@ -90,7 +90,7 @@ const client = new Discord.Client({
 	presence: { activity: { name: '!invite || !help', type: 'PLAYING' }, status: 'online' }
 });
 
-// attaching config to client
+
 client.config = config;
 
 client.isOwner = id => Object.values(config.owners).includes(id);
@@ -102,10 +102,10 @@ client.embed = msg => ({
 	}
 });
 
-// Creating collections
+
 config.collections.forEach(collection => client[collection] = new Discord.Collection());
 
-// Loading handlers
+
 (async () => {
 	const handlers = config.handlers;
 	for (let i = 0; i < handlers.length; i++) {
