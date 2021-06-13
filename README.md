@@ -8,7 +8,9 @@ QUICK Start:
 create an config.json file in the whole project (not in any folder or other file) with the following code:
 
 {   
+
     "token": "bot token from the dev portal",
+    
     "prefix": "!",
     
     "cocToken": "", // get it from here: https://developer.clashofclans.com/#/
